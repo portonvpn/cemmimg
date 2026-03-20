@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hadi | All-In-One</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --spotify: 30, 215, 96; 
+            --youtube: 255, 0, 0; 
+            --fmhy: 145, 70, 255; 
+            --movies: 0, 210, 255; 
+            --games: 255, 153, 0; 
+            --apk: 0, 230, 118; 
+            --gta: 255, 170, 0; 
+            --minecraft: 76, 175, 80; 
+            --netflix: 229, 9, 20;
+            --yt-premium-red: 255, 20, 60;
+            --yt-premium-dark: 10, 10, 15;
+            --mica-bg: rgba(255, 255, 255, 0.015); 
+            --mica-border: rgba(255, 255, 255, 0.12);
+            --mica-blur: blur(50px) saturate(220%);
+        }
+        * { box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent !important; outline: none !important; }
+        ::selection { background: transparent !important; }
+        body { margin: 0; min-height: 100vh; color: white; overflow-x: hidden; background: #0b0615; }
+        #bg { position: fixed; inset: 0; z-index: -1; }
+        .container { padding: 40px 24px; max-width: 1100px; margin: auto; position: relative; z-index: 5; }
+        #vaultTrigger { cursor: pointer; user-select: none; display: inline-block; color: #b983ff; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+        .button-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .btn {
+            padding: 22px; border-radius: 26px; border: 1px solid var(--mica-border);
+            cursor: pointer; color: white; text-align: left; position: relative;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: bounceIn 0.8s both; display: flex; flex-direction: column; gap: 12px;
+            overflow: hidden; backdrop-filter: var(--mica-blur); -webkit-backdrop-filter: var(--mica-blur);
+            background-color: var(--mica-bg); 
+            box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255,255,255,0.1);
+        }
+        .btn.focused, .btn:hover { transform: scale(1.08) translateY(-10px); border-color: rgba(255, 255, 255, 0.5); background-color: rgba(255, 255, 255, 0.05); }
+        @keyframes bounceIn { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .btn i { font-size: 2.4rem; opacity: 0.9; transition: 0.35s; display: flex; align-items: center; height: 40px; }
+        .btn.focused i, .btn:hover i { transform: scale(1.15) translateY(-5px) rotate(-3deg); opacity: 1; }
+        .btn span { font-weight: 800; font-size: 1.15rem; letter-spacing: 0.5px; }
+        .btn p { margin: 0; font-size: 0.8rem; opacity: 0.7; font-weight: 500; }
+        .new-star { position: absolute; top: 15px; right: 15px; color: #FFD700; font-size: 1.2rem; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)); }
+        .yt-premium { background-image: linear-gradient(135deg, rgba(var(--yt-premium-red), 0.3), rgba(var(--yt-premium-dark), 0.7)); }
+        .netflix { background-image: linear-gradient(135deg, rgba(var(--netflix), 0.25), rgba(var(--netflix), 0.03)); }
+        .minecraft { background-image: linear-gradient(135deg, rgba(var(--minecraft), 0.2), rgba(var(--minecraft), 0.03)); }
+        .fmhy { background-image: linear-gradient(135deg, rgba(var(--fmhy), 0.2), rgba(var(--fmhy), 0.03)); }
+        .gta { background-image: linear-gradient(135deg, rgba(var(--gta), 0.3), rgba(var(--gta), 0.05)); color: #ffca28; }
+        .spotify { background-image: linear-gradient(135deg, rgba(var(--spotify), 0.2), rgba(var(--spotify), 0.03)); }
+        .youtube { background-image: linear-gradient(135deg, rgba(var(--youtube), 0.25), rgba(var(--youtube), 0.03)); }
+        .movies { background-image: linear-gradient(135deg, rgba(var(--movies), 0.25), rgba(var(--movies), 0.03)); }
+        .apk { background-image: linear-gradient(135deg, rgba(var(--apk), 0.2), rgba(var(--apk), 0.03)); }
+        .games { background-image: linear-gradient(135deg, rgba(var(--games), 0.25), rgba(var(--games), 0.03)); }
+        .overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7); 
+            backdrop-filter: blur(40px); z-index: 9999; display: none;
+            align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .overlay.active { opacity: 1; display: flex; }
+        .mica-card { 
+            width: 92%; max-width: 450px; padding: 35px; 
+            background: rgba(20, 20, 30, 0.85); border: 1px solid rgba(255,255,255,0.15); 
+            border-radius: 28px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .overlay.active .mica-card { transform: scale(1); }
+        #terminal-input {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(185, 131, 255, 0.4);
+            border-radius: 12px; color: #b983ff; font-family: monospace; font-size: 1.5rem;
+            width: 100%; text-align: center; padding: 12px; margin-top: 15px;
+            letter-spacing: 5px; text-transform: uppercase;
+        }
+        #secretPage, #fakePage { display: none; padding: 60px 20px; text-align: center; position: relative; z-index: 100; pointer-events: auto; }
+        .secret-btn { display: block; width: 100%; max-width: 400px; margin: 15px auto; padding: 22px; border-radius: 20px; font-weight: 900; font-size: 1.4rem; text-decoration: none; backdrop-filter: var(--mica-blur); border: 1px solid var(--mica-border); color: white; position: relative; z-index: 110; }
+        .asaru-img { width: 100%; max-width: 320px; max-height: 40vh; object-fit: contain; border-radius: 20px; margin: 20px 0; border: 4px solid rgba(255,255,255,0.15); }
+        @media (max-width: 600px) {
+            .container { padding: 30px 16px; } .button-grid { grid-template-columns: 1fr; gap: 12px; }
+            .btn { padding: 18px 20px; border-radius: 22px; }
+        }
+    </style>
+</head>
+<body onclick="unlockAudio()">
+<div id="bg"></div>
+<div id="terminal-overlay" class="overlay" onclick="closeTerminal()">
+    <div class="mica-card" onclick="event.stopPropagation()">
+        <h2 style="font-size: 0.8rem; opacity: 0.5; margin-bottom: 10px; letter-spacing: 3px; font-weight: 900;">SYSTEM AUTH</h2>
+        <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" inputmode="text" placeholder="••••">
+    </div>
+</div>
+<div id="lore-overlay" class="overlay" onclick="closeLore()">
+    <div class="mica-card" onclick="event.stopPropagation()">
+        <h2 style="font-weight: 900; color: #b983ff; margin: 0; font-size: 1.5rem;">The Cemduo</h2>
+        <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 5px; font-weight: 500;">Minecraft Bedwars / Cubecraft Legends</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; text-align: left;">
+            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px;"><label style="font-size: 0.65rem; opacity: 0.5; text-transform: uppercase; display: block;">PvP Skill</label><div style="font-weight: 800; color: #b983ff;">Elite / 10</div></div>
+            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px;"><label style="font-size: 0.65rem; opacity: 0.5; text-transform: uppercase; display: block;">Teamwork</label><div style="font-weight: 800; color: #b983ff;">Unstoppable</div></div>
+            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px;"><label style="font-size: 0.65rem; opacity: 0.5; text-transform: uppercase; display: block;">Bridging</label><div style="font-weight: 800; color: #b983ff;">God Speed</div></div>
+            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 12px;"><label style="font-size: 0.65rem; opacity: 0.5; text-transform: uppercase; display: block;">Win Record</label><div style="font-weight: 800; color: #b983ff;">56.87s</div></div>
+        </div>
+        <button onclick="closeLore()" style="margin-top: 15px; background: white; color: black; border: none; padding: 12px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%;">CLOSE</button>
+    </div>
+</div>
+<div class="container" id="mainPage">
+    <header>
+        <h1>The all in one downloader – zoro</h1>
+        <p class="version-text">v5.8 - powered by <span id="vaultTrigger">The Cemduo</span></p>
+    </header>
+    <div class="button-grid" id="grid">
+        <button class="btn yt-premium" onclick="fastOpen('https://github.com/reisxd/TizenTubeCobalt/releases/download/v1.0.8/cobalt-arm64.apk', event, this)">
+            <i class="material-icons">workspace_premium</i><i class="material-icons new-star">star</i><span>YouTube Premium</span><p>Free YouTube Premium on Android.</p></button>
+        <button class="btn netflix" onclick="fastOpen('https://net22.cc/home', event, this)"><i class="material-icons">live_tv</i><span>Netflix Free</span><p>Premium streaming.</p></button>
+        <button class="btn minecraft" onclick="fastOpen('https://dl.mcpelife.com/minecraft-pe/1-26-3-1/minecraft-1.26.3.1-arm64-v8a-compressed.apk', event, this)"><i class="material-icons">layers</i><span>Minecraft PE</span><p>v1.26.3.1 Official.</p></button>
+        <button class="btn fmhy" onclick="fastOpen('https://fmhy.net/', event, this)"><i class="material-icons">language</i><span>FMHY.net</span><p>Global megathread.</p></button>
+        <button class="btn gta" onclick="fastOpen('https://mega.nz/file/JtATDKSA#ghftzzoPblrZOjnQ_x5GrNSiRdVvIZIwX7zaMMY3Ovw', event, this)"><i class="material-icons">smartphone</i><span>GTA V Android</span><p>Full experience mobile.</p></button>
+        <button class="btn spotify" onclick="fastOpen('https://spotidownloader.com/en14', event, this)"><i class="material-icons">music_note</i><span>Spotify DL</span><p>Playlist rip.</p></button>
+        <button class="btn youtube" onclick="fastOpen('https://v6.www-y2mate.com/', event, this)"><i class="material-icons">play_circle</i><span>YouTube 4K</span><p>Fast convert.</p></button>
+        <button class="btn movies" onclick="fastOpen('https://pahe.ink', event, this)"><i class="material-icons">movie_filter</i><span>Movie Downloader</span><p>Pahe.ink high-quality.</p></button>
+        <button class="btn apk" onclick="fastOpen('https://apkpure.net/', event, this)"><i class="material-icons">shop</i><span>APKPure</span><p>Region-free clean APKs.</p></button>
+        <button class="btn games" onclick="fastOpen('https://fitgirl-repacks.site/', event, this)"><i class="material-icons">videogame_asset</i><span>Game Repacks</span><p>FitGirl's library.</p></button>
+    </div>
+</div>
+<div id="secretPage">
+    <h1 style="width: 100%; border:none;">Secret access granted</h1>
+    <a href="https://beeg.com" target="_blank" class="secret-btn" style="background: rgba(127, 0, 255, 0.4);">BEEG</a>
+    <a href="https://pornhub.com" target="_blank" class="secret-btn" style="background: rgba(255, 140, 0, 0.4);">PH</a>
+    <button onclick="location.reload()" style="background:none; border: 1px solid white; color:white; padding:12px 25px; border-radius:12px; cursor:pointer; margin-top:30px; font-weight:700;">EXIT VAULT</button>
+</div>
+<div id="fakePage">
+    <h1 style="width:100%; border:none; font-size:2.5rem;">surprise!!</h1>
+    <img src="https://raw.githubusercontent.com/portonvpn/Allinone/main/asaru.JPG" class="asaru-img" alt="Surprise">
+    <p style="opacity: 0.8; font-weight: 700;">asaru67 💀</p>
+    <button onclick="location.reload()" style="background:white; color:black; border:none; padding:12px 30px; border-radius:12px; cursor:pointer; margin-top:20px; font-weight:900;">GO BACK</button>
+</div>
+<audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/6682" preload="auto"></audio>
+<audio id="typeSound" src="https://www.fesliyanstudios.com/play-mp3/6?id=2" preload="auto"></audio>
+<audio id="auroraAmbience" src="https://raw.githubusercontent.com/portonvpn/Allinone/main/aurora.mp3" loop preload="auto"></audio>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.dots.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+VANTA.DOTS({ el: "#bg", mouseControls: true, touchControls: true, color: 0xb983ff, color2: 0x7f00ff, backgroundColor: 0x0b0615, spacing: 32, size: 3.2 });
+let audioUnlocked = false;
+function unlockAudio() {
+    if (audioUnlocked) return;
+    const bgMusic = document.getElementById("auroraAmbience");
+    bgMusic.play().then(() => { audioUnlocked = true; }).catch(e => {});
+}
+function fastOpen(url, e, el) {
+    unlockAudio();
+    const sound = document.getElementById("clickSound");
+    sound.currentTime = 0; sound.volume = 0.5; sound.play().catch(() => {});
+    window.open(url, '_blank');
+}
+const termInput = document.getElementById('terminal-input');
+const terminal = document.getElementById('terminal-overlay');
+const lore = document.getElementById('lore-overlay');
+function openTerminal() { terminal.style.display = 'flex'; setTimeout(() => { terminal.classList.add('active'); termInput.focus(); }, 10); }
+function closeTerminal() { terminal.classList.remove('active'); setTimeout(() => { terminal.style.display = 'none'; termInput.value = ''; }, 300); }
+function openLore() { lore.style.display = 'flex'; setTimeout(() => { lore.classList.add('active'); }, 10); }
+function closeLore() { lore.classList.remove('active'); setTimeout(() => { lore.style.display = 'none'; }, 300); }
+termInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        const code = termInput.value.toLowerCase();
+        if (code === 'gamdom') {
+            document.getElementById("mainPage").style.display = "none";
+            document.getElementById("secretPage").style.display = "block";
+            closeTerminal();
+        } else if (code === 'cemduo') {
+            document.getElementById("mainPage").style.display = "none";
+            document.getElementById("fakePage").style.display = "block";
+            closeTerminal();
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        } else {
+            termInput.style.color = 'red';
+            setTimeout(() => { termInput.style.color = '#b983ff'; termInput.value = ''; }, 500);
+        }
+    }
+});
+let clickTimer = null;
+const trigger = document.getElementById('vaultTrigger');
+trigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (clickTimer === null) {
+        clickTimer = setTimeout(() => { clickTimer = null; openLore(); }, 500);
+    } else {
+        clearTimeout(clickTimer);
+        clickTimer = null;
+        unlockAudio();
+        openTerminal();
+    }
+});
+trigger.addEventListener('touchstart', (e) => { e.preventDefault(); trigger.click(); });
+</script>
+</body>
+</html>
