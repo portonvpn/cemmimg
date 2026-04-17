@@ -61,6 +61,9 @@
         .movies { background-image: linear-gradient(135deg, rgba(var(--movies), 0.25), rgba(var(--movies), 0.03)); }
         .apk { background-image: linear-gradient(135deg, rgba(var(--apk), 0.2), rgba(var(--apk), 0.03)); }
         .games { background-image: linear-gradient(135deg, rgba(var(--games), 0.25), rgba(var(--games), 0.03)); }
+        .cemabyss { background-image: linear-gradient(135deg, rgba(120, 80, 255, 0.28), rgba(80, 40, 200, 0.05)); border: 1px solid rgba(120, 80, 255, 0.35) !important; }
+        .cemgrid { background-image: linear-gradient(135deg, rgba(255, 80, 120, 0.28), rgba(255, 200, 50, 0.08)); border: 1px solid rgba(255, 100, 140, 0.35) !important; }
+        .diddyshot { background-image: linear-gradient(135deg, rgba(220, 30, 30, 0.3), rgba(180, 0, 0, 0.05)); border: 1px solid rgba(220, 30, 30, 0.4) !important; }
         .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(40px); z-index: 9999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
         .overlay.active { opacity: 1; display: flex; }
         .mica-card { width: 92%; max-width: 450px; padding: 35px; background: rgba(20, 20, 30, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 28px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.6); transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -99,6 +102,18 @@
         <p class="version-text">v5.9.1— powered by <span id="vaultTrigger">The Cemduo</span></p>
     </header>
     <div class="button-grid" id="grid">
+    
+    <!-- button(nigger) -->
+    
+
+            <button class="btn cemabyss" onclick="fastOpen('https://cemabyss.vercel.app', event, this)"><i class="material-icons" style="color: #a78bfa;">smart_display</i><i class="material-icons new-star" style="color: #a78bfa; filter: drop-shadow(0 0 8px rgba(167,139,250,0.8));">auto_awesome</i><span>CemAbyss</span><p>Video platform. Watch and upload!</p></button>
+            
+        <button class="btn cemgrid" onclick="fastOpen('https://cemgrid.vercel.app', event, this)"><i class="material-icons" style="color: #ff7eb3;">sports_motorsports</i><i class="material-icons new-star" style="color: #ff7eb3; filter: drop-shadow(0 0 8px rgba(255,126,179,0.8));">bolt</i><span>CemGrid</span><p>Classic kart racing game. Made in Godot.</p></button>
+        
+        
+          <button class="btn diddyshot" onclick="fastOpen('https://diddyshot.vercel.app', event, this)"><i class="material-icons" style="color: #f87171;">gps_fixed</i><i class="material-icons new-star" style="color: #f87171; filter: drop-shadow(0 0 8px rgba(248,113,113,0.8));">whatshot</i><span>DiddyShot</span><p>FPS monster killer. made in HTML.</p></button>
+    
+    
         <button class="btn zoripas" onclick="fastOpen('https://portonvpn.github.io/ZorIPAS/', event, this)"><i class="material-icons" style="color: #00D4FF;">install_mobile</i><i class="material-icons verified-icon">verified</i><span>ZorIPAs</span><p>Premium IPA library for iOS. Decrypted.</p></button>
         <button class="btn netflix" onclick="fastOpen('https://net22.cc/home', event, this)"><i class="material-icons">live_tv</i><i class="material-icons new-star">star</i><span>Netflix Free</span><p>Premium streaming.</p></button>
         <button class="btn apk" onclick="fastOpen('https://portonvpn.github.io/ZorApks/', event, this)"><i class="material-icons">shop</i><i class="material-icons" style="position: absolute; top: 15px; right: 15px; color: #00e676; font-size: 1.2rem; filter: drop-shadow(0 0 5px #00e676);">fiber_new</i><span>ZorApks</span><p>Premium Apk library | (by me)</p></button>
@@ -110,6 +125,9 @@
         <button class="btn youtube" onclick="fastOpen('https://v6.www-y2mate.com/', event, this)"><i class="material-icons">play_circle</i><span>YouTube Downloader</span><p>Fast download and convert.</p></button>
         <button class="btn movies" onclick="fastOpen('https://pahe.ink', event, this)"><i class="material-icons">movie_filter</i><span>Movie Downloader</span><p>Pahe.ink high-quality.</p></button>
         <button class="btn games" onclick="fastOpen('https://fitgirl-repacks.site/', event, this)"><i class="material-icons">videogame_asset</i><span>Game Repacks</span><p>FitGirl's library.</p></button>
+
+
+
     </div>
 </div>
 <div id="secretPage"><h1 style="width: 100%; border:none;">Secret access granted</h1><a href="https://beeg.com" target="_blank" class="secret-btn" style="background: rgba(127, 0, 255, 0.4);">BEEG</a><a href="https://pornhub.com" target="_blank" class="secret-btn" style="background: rgba(255, 140, 0, 0.4);">PH</a><button onclick="location.reload()" style="background:none; border: 1px solid white; color:white; padding:12px 25px; border-radius:12px; cursor:pointer; margin-top:30px; font-weight:700;">EXIT VAULT</button></div>
