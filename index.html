@@ -21,7 +21,7 @@
         :root {
             --zoripas: 0, 212, 255; --spotify: 30, 215, 96; --youtube: 255, 0, 0; --fmhy: 145, 70, 255; 
             --movies: 0, 210, 255; --games: 255, 153, 0; --apk: 0, 230, 118; --gta: 255, 170, 0; 
-            --minecraft: 76, 175, 80; --netflix: 229, 9, 20; --yt-premium-red: 255, 20, 60;
+            --minecraft: 76, 175, 80; --netflix: 229, 9, 20; --zorflix: 0, 210, 180; --zorflix2: 220, 30, 80; --zorflix3: 255, 80, 160; --yt-premium-red: 255, 20, 60;
             --yt-premium-dark: 10, 10, 15; --mica-bg: rgba(255, 255, 255, 0.015); 
             --mica-border: rgba(255, 255, 255, 0.12); --mica-blur: blur(50px) saturate(220%);
         }
@@ -53,6 +53,7 @@
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
         .yt-premium { background-image: linear-gradient(135deg, rgba(var(--yt-premium-red), 0.3), rgba(var(--yt-premium-dark), 0.7)); }
         .netflix { background-image: linear-gradient(135deg, rgba(var(--netflix), 0.25), rgba(var(--netflix), 0.03)); }
+        .zorflix { background-image: linear-gradient(135deg, rgba(var(--zorflix), 0.2), rgba(var(--zorflix2), 0.15), rgba(var(--zorflix3), 0.08)); border: 1px solid rgba(var(--zorflix3), 0.35) !important; }
         .minecraft { background-image: linear-gradient(135deg, rgba(var(--minecraft), 0.2), rgba(var(--minecraft), 0.03)); }
         .fmhy { background-image: linear-gradient(135deg, rgba(var(--fmhy), 0.2), rgba(var(--fmhy), 0.03)); }
         .gta { background-image: linear-gradient(135deg, rgba(var(--gta), 0.3), rgba(var(--gta), 0.05)); color: #ffca28; }
@@ -103,7 +104,14 @@
     </header>
     <div class="button-grid" id="grid">
     
-    <!-- button(nigger) -->
+        <button class="btn zorflix" onclick="fastOpen('https://zorflix.vercel.app', event, this)">
+            <i class="material-icons" style="color: #00d2b4;">movie_filter</i>
+            <i class="material-icons new-star" style="color: #ff50a0; filter: drop-shadow(0 0 8px rgba(255,80,160,0.85));">play_circle_filled</i>
+            <span>ZorFlix</span>
+            <p>Stream movies & shows — free, no login needed.</p>
+        </button>
+
+        <!-- button(nigger) -->
     
 
             <button class="btn cemabyss" onclick="fastOpen('https://cemabyss.vercel.app', event, this)"><i class="material-icons" style="color: #a78bfa;">smart_display</i><i class="material-icons new-star" style="color: #a78bfa; filter: drop-shadow(0 0 8px rgba(167,139,250,0.8));">auto_awesome</i><span>CemAbyss</span><p>Video platform. Watch and upload!</p></button>
@@ -118,7 +126,7 @@
         <button class="btn netflix" onclick="fastOpen('https://net22.cc/home', event, this)"><i class="material-icons">live_tv</i><i class="material-icons new-star">star</i><span>Netflix Free</span><p>Premium streaming.</p></button>
         <button class="btn apk" onclick="fastOpen('https://portonvpn.github.io/ZorApks/', event, this)"><i class="material-icons">shop</i><i class="material-icons" style="position: absolute; top: 15px; right: 15px; color: #00e676; font-size: 1.2rem; filter: drop-shadow(0 0 5px #00e676);">fiber_new</i><span>ZorApks</span><p>Premium Apk library | (by me)</p></button>
         <button class="btn yt-premium" onclick="fastOpen('https://github.com/reisxd/TizenTubeCobalt/releases/download/v1.0.8/cobalt-arm64.apk', event, this)"><i class="material-icons">workspace_premium</i><span>YouTube Premium TV</span><p>Free YouTube Premium on Android TV.</p></button>
-        <button class="btn minecraft" onclick="fastOpen('https://dl.mcpelife.com/minecraft-pe/1-26-10-4/minecraft-1.26.10.4-arm64-v8a.apk', event, this)"><i class="material-icons">layers</i><span>Minecraft PE</span><p>v1.26.3.1 Official.</p></button>
+        <button class="btn minecraft" onclick="fastOpen('https://dl.mcpelife.com/minecraft-pe/1-26-13-1/minecraft-1.26.13.1-arm64-v8a.apk', event, this)"><i class="material-icons">layers</i><span>Minecraft PE</span><p>v1.26.3.1 Official.</p></button>
         <button class="btn fmhy" onclick="fastOpen('https://fmhy.net/', event, this)"><i class="material-icons">language</i><span>FMHY.net</span><p>Global megathread.</p></button>
         <button class="btn gta" onclick="fastOpen('https://mega.nz/file/JtATDKSA#ghftzzoPblrZOjnQ_x5GrNSiRdVvIZIwX7zaMMY3Ovw', event, this)"><i class="material-icons">smartphone</i><span>GTA V Android</span><p>Full experience mobile.</p></button>
         <button class="btn spotify" onclick="fastOpen('https://spotidownloader.com/en14', event, this)"><i class="material-icons">music_note</i><span>Spotify DL</span><p>Playlist rip.</p></button>
