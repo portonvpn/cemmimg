@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,6 +138,12 @@
         
         @keyframes bounceIn { from { opacity: 0; transform: translateY(15px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
         @media (max-width: 600px) { .container { padding: 25px 16px; } .button-grid { grid-template-columns: 1fr; gap: 12px; } }
+        
+        .glacier {
+    background-image: linear-gradient(135deg, rgba(0, 229, 255, 0.18), rgba(120, 200, 255, 0.05));
+    border: 1px solid rgba(0, 229, 255, 0.3) !important;
+}
+        
     </style>
 </head>
 <body onclick="unlockAudio()">
@@ -149,6 +156,21 @@
     </header>
 
     <div class="button-grid">
+    
+    
+    <button class="btn glacier" onclick="fastOpen('https://glacier-gamma.vercel.app/', event, this)">
+    <i class="material-icons" style="color: #6ee7ff;">ac_unit</i>
+    <i class="material-icons new-star" style="color: #00e5ff;">auto_awesome</i>
+    <span>Glacier.AI</span>
+    <p>Fastest self Hosted AI chatbot and model!
+        <span class="creator-tag">
+            <i class="material-icons">verified</i>
+            <span>made by zoro</span>
+        </span>
+    </p>
+</button>
+    
+    
         <button class="btn zorflix" onclick="fastOpen('https://zorflix.vercel.app', event, this)">
             <i class="material-icons" style="color: #00d2b4;">movie_filter</i>
             <i class="material-icons new-star" style="color: #ff50a0;">play_circle_filled</i>
