@@ -250,9 +250,39 @@
         .exit-btn:hover { transform: scale(1.05); background: #eee; }
 
         @media (max-width: 600px) { 
-            .container { padding: 25px 16px; } 
-            .button-grid { grid-template-columns: 1fr; gap: 12px; } 
+    .container { padding: 25px 16px; } 
+    .button-grid { grid-template-columns: 1fr; gap: 12px; } 
+    .vault-grid { display: flex; flex-direction: column; }
+}
+            
+            
+            .vault-grid {
+    max-width: 800px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.ch-btn {
+    border-color: rgba(60, 60, 60, 0.6);
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.95));
+    box-shadow: 0 0 20px rgba(10, 10, 10, 0.9);
+}
+
+.ch-btn:hover {
+    border-color: rgba(120, 120, 120, 0.8);
+    background: #080808;
+    box-shadow: 0 0 30px rgba(100, 100, 100, 0.25), 0 0 15px rgba(0, 0, 0, 1);
+}
+
+.ch-btn span, .ch-btn i {
+    color: #f0f0f0 !important;
+}
+            
         }
+        
+        
     </style>
 </head>
 <body onclick="unlockAudio()">
@@ -370,20 +400,28 @@
         </div>
     </div>
 
-    <div id="secretPage" style="display:none; text-align:center; padding-top:100px;">
-        <h1 style="margin-bottom: 50px;">Vault Unlocked</h1>
-        <div style="max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 20px;">
-            <a href="https://beeg.com" target="_blank" class="secret-btn">
-                <i class="material-icons" style="font-size: 2.5rem; color: #87cefa;">movie</i>
-                <span>BEEG</span>
-            </a>
-            <a href="https://pornhub.com" target="_blank" class="secret-btn ph-btn">
-                <i class="material-icons" style="font-size: 2.5rem; color: #ff9900;">play_circle</i>
-                <span>PH</span>
-            </a>
-            <button onclick="location.reload()" class="exit-btn">EXIT</button>
-        </div>
+<div id="secretPage" style="display:none; text-align:center; padding-top:100px;">
+    <h1 style="margin-bottom: 50px;">Vault Unlocked</h1>
+    
+    <div class="vault-grid">
+        <a href="https://beeg.com" target="_blank" class="secret-btn">
+            <i class="material-icons" style="font-size: 2.5rem; color: #87cefa;">movie</i>
+            <span>BEEG</span>
+        </a>
+        <a href="https://pornhub.com" target="_blank" class="secret-btn ph-btn">
+            <i class="material-icons" style="font-size: 2.5rem; color: #ff9900;">play_circle</i>
+            <span>PH</span>
+        </a>
+        <a href="https://timidcorn.netlify.app" target="_blank" class="secret-btn ch-btn">
+            <i class="material-icons" style="font-size: 2.5rem;">dangerous</i>
+            <span>CH</span>
+        </a>
     </div>
+
+    <div style="max-width: 600px; margin: 30px auto 0;">
+        <button onclick="location.reload()" class="exit-btn">EXIT</button>
+    </div>
+</div>
 
     <div id="fakePage" style="display:none; text-align:center; padding-top:100px;">
         <h1 style="margin-bottom: 30px;">Surprise!</h1>
@@ -474,7 +512,7 @@
                         document.getElementById("secretPage").style.display = "block"; 
                         closeTerminal(); 
                     }
-                    else if (code === 'cemduo') { 
+                    else if (code === 'cem') { 
                         document.getElementById("mainPage").style.display = "none"; 
                         document.getElementById("fakePage").style.display = "block"; 
                         closeTerminal(); 
