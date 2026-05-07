@@ -187,100 +187,196 @@
             letter-spacing: 4px; 
         }
 
-        /* VAULT BUTTONS */
-        .secret-btn {
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            border-radius: 26px;
-            border: 1px solid rgba(135, 206, 250, 0.2);
-            background: rgba(135, 206, 250, 0.05);
-            backdrop-filter: blur(20px);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            color: white;
-            margin-bottom: 20px;
-        }
+        /* ===== VAULT LAYOUT ===== */
 
-        .secret-btn:hover {
-            transform: scale(1.05) translateY(-5px);
-            border-color: #87cefa;
-            background: rgba(135, 206, 250, 0.15);
-            box-shadow: 0 0 30px rgba(135, 206, 250, 0.2);
-        }
-
-        .secret-btn span {
-            font-weight: 900;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            color: #87cefa;
-        }
-
-        .ph-btn {
-            border-color: rgba(255, 153, 0, 0.2);
-            background: rgba(255, 153, 0, 0.05);
-        }
-
-        .ph-btn:hover {
-            border-color: #ff9900;
-            background: rgba(255, 153, 0, 0.15);
-            box-shadow: 0 0 30px rgba(255, 153, 0, 0.4);
-        }
-
-        .ph-btn span { color: #ff9900 !important; }
-
-        .exit-btn {
-            margin-top: 40px;
-            background: white;
-            color: black;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 12px;
-            font-weight: 900;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            width: 100%;
-        }
-
-        .exit-btn:hover { transform: scale(1.05); background: #eee; }
-
-        @media (max-width: 600px) { 
-    .container { padding: 25px 16px; } 
-    .button-grid { grid-template-columns: 1fr; gap: 12px; } 
-    .vault-grid { display: flex; flex-direction: column; }
-}
-            
-            
-            .vault-grid {
-    max-width: 800px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+.vault-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    width:100%;
+    margin-top:40px;
 }
 
-.ch-btn {
-    border-color: rgba(60, 60, 60, 0.6);
-    background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.95));
-    box-shadow: 0 0 20px rgba(10, 10, 10, 0.9);
+/* TOP BUTTON */
+.vault-top{
+    display:flex;
+    justify-content:center;
+    width:100%;
 }
 
-.ch-btn:hover {
-    border-color: rgba(120, 120, 120, 0.8);
-    background: #080808;
-    box-shadow: 0 0 30px rgba(100, 100, 100, 0.25), 0 0 15px rgba(0, 0, 0, 1);
+/* BOTTOM ROW */
+.vault-grid{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:22px;
+    flex-wrap:nowrap;
 }
 
-.ch-btn span, .ch-btn i {
-    color: #f0f0f0 !important;
+/* BASE BUTTON */
+.secret-btn{
+    text-decoration:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    width:140px;
+    height:170px;
+
+    border-radius:28px;
+    color:white;
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    transition:0.35s cubic-bezier(.2,.8,.2,1);
+
+    position:relative;
+    overflow:hidden;
 }
-            
-        }
+
+/* HOVER */
+.secret-btn:hover{
+    transform:translateY(-8px) scale(1.05);
+}
+
+/* TEXT */
+.secret-btn span{
+    font-weight:900;
+    font-size:1.7rem;
+    letter-spacing:2px;
+}
+
+/* ===== ZORHUB ===== */
+
+.zorhub-btn{
+    width:320px;
+    height:180px;
+
+    border:1px solid rgba(255,255,255,0.14);
+
+    background:
+    linear-gradient(135deg,
+    rgba(255,0,140,0.16),
+    rgba(0,229,255,0.16),
+    rgba(120,0,255,0.16));
+
+    box-shadow:
+    0 0 30px rgba(255,0,140,0.22),
+    0 0 60px rgba(0,229,255,0.14),
+    0 0 100px rgba(120,0,255,0.10);
+
+    animation:zorGlow 5s ease-in-out infinite;
+}
+
+.zorhub-btn::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+
+    background:linear-gradient(
+        90deg,
+        #ff0080,
+        #00e5ff,
+        #7a00ff,
+        #00ff99,
+        #ff0080
+    );
+
+    background-size:300% 300%;
+
+    filter:blur(18px);
+
+    opacity:.8;
+
+    z-index:-1;
+
+    animation:rainbowFlow 6s linear infinite;
+}
+
+/* ===== OTHER BUTTONS ===== */
+
+.vault-grid .secret-btn{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+/* PH */
+.ph-btn{
+    background:linear-gradient(
+        135deg,
+        rgba(255,140,0,.14),
+        rgba(255,80,0,.05)
+    ) !important;
+
+    border:1px solid rgba(255,170,0,.25) !important;
+}
+
+.ph-btn:hover{
+    box-shadow:0 0 35px rgba(255,150,0,.35);
+}
+
+/* CH */
+.ch-btn{
+    background:linear-gradient(
+        135deg,
+        rgba(30,30,30,.95),
+        rgba(5,5,5,.98)
+    ) !important;
+
+    border:1px solid rgba(120,120,120,.15) !important;
+}
+
+.ch-btn:hover{
+    box-shadow:0 0 35px rgba(255,255,255,.08);
+}
+
+/* ICONS */
+.zorhub-icon{
+    font-size:3rem !important;
+
+    filter:
+    drop-shadow(0 0 12px #00e5ff)
+    drop-shadow(0 0 24px #ff00aa);
+}
+
+/* ANIMS */
+@keyframes rainbowFlow{
+    0%{background-position:0% 50%;}
+    100%{background-position:300% 50%;}
+}
+
+@keyframes zorGlow{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-4px);
+    }
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:700px){
+
+    .vault-grid{
+        flex-wrap:wrap;
+    }
+
+    .zorhub-btn{
+        width:260px;
+        height:160px;
+    }
+
+    .secret-btn{
+        width:120px;
+        height:150px;
+    }
+}
         
         
     </style>
@@ -402,21 +498,44 @@
 
 <div id="secretPage" style="display:none; text-align:center; padding-top:100px;">
     <h1 style="margin-bottom: 50px;">Vault Unlocked</h1>
-    
+
+   <div class="vault-wrapper">
+
+    <div class="vault-top">
+        <a href="https://zorhub.vercel.app" target="_blank" class="secret-btn zorhub-btn">
+            <i class="material-icons zorhub-icon">rocket_launch</i>
+
+            <span class="zorhub-text">
+                ZORHUB
+
+                <span class="creator-tag">
+                    <i class="material-icons">verified</i>
+                    <span>made by zoro</span>
+                </span>
+            </span>
+
+            <i class="material-icons new-star zorhub-star">auto_awesome</i>
+        </a>
+    </div>
+
     <div class="vault-grid">
         <a href="https://beeg.com" target="_blank" class="secret-btn">
             <i class="material-icons" style="font-size: 2.5rem; color: #87cefa;">movie</i>
             <span>BEEG</span>
         </a>
+
         <a href="https://pornhub.com" target="_blank" class="secret-btn ph-btn">
             <i class="material-icons" style="font-size: 2.5rem; color: #ff9900;">play_circle</i>
             <span>PH</span>
         </a>
+
         <a href="https://timidcorn.netlify.app" target="_blank" class="secret-btn ch-btn">
             <i class="material-icons" style="font-size: 2.5rem;">dangerous</i>
             <span>CH</span>
         </a>
     </div>
+
+</div>
 
     <div style="max-width: 600px; margin: 30px auto 0;">
         <button onclick="location.reload()" class="exit-btn">EXIT</button>
