@@ -421,6 +421,34 @@
 }
         
         
+.cemos11 .new-star{
+    display:block !important;
+    height:auto !important;
+    width:auto !important;
+
+    font-size:1.1rem !important;
+
+    line-height:1;
+
+    transform:none !important;
+
+    filter:
+    drop-shadow(0 0 8px rgba(125,252,255,0.8))
+    drop-shadow(0 0 18px rgba(180,0,255,0.35));
+
+    animation:cemosRocket 2.2s ease-in-out infinite;
+}
+
+@keyframes cemosRocket{
+    0%,100%{
+        transform:translateY(0) rotate(-8deg);
+    }
+
+    50%{
+        transform:translateY(-2px) rotate(8deg);
+    }
+}        
+        
     </style>
 </head>
 <body onclick="unlockAudio()">
@@ -441,6 +469,24 @@
         </header>
 
         <div class="button-grid">
+            
+            
+ <button class="btn cemos11" onclick="fastOpen('https://your-link-here.com')">
+    <i class="material-icons" style="color:#7dfcff;">memory</i>
+
+    <i class="material-icons new-star" style="color:#7dfcff;">rocket_launch</i>
+
+    <span>Cemos-11</span>
+
+    <p>
+        Virtual device running fully in your browser.
+        
+        <span class="creator-tag">
+            <i class="material-icons">verified</i>
+            <span>made by zoro</span>
+        </span>
+    </p>
+</button>
         
         <button class="btn mistfall" onclick="fastOpen('https://mist-fall.vercel.app')">
     <i class="material-icons" style="color:#8fffe0;">forest</i>
